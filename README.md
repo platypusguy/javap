@@ -1,2 +1,5 @@
 # javap
-Implementation of javap utitlity
+
+Implementation of javap utitlity, written in Rust
+
+
