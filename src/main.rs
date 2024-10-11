@@ -6,10 +6,7 @@ fn main() {
     // Collect the command line arguments into a vector
     let args: Vec<String> = env::args().collect();
 
-    // The first argument is the program's name, which can generally be ignored
-    // let program_name = &args[0];
-
-    // Check if a file name was specified
+    // args[0] = program name, so class file must be in args[i]
     if args.len() == 1 { // if none 
         println!("Usage: javap path_to_class_file");
         exit(1)
