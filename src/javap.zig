@@ -13,13 +13,22 @@ pub fn main() anyerror!void {
 
     if( args.len < 2 ) { // arg[0] is executable's filename, arg[1] is first true CLI arg
         std.debug.print("javap expects a the name of a class file\n", .{});
-    } else {
-        // Get and print them!
-        std.debug.print("There are {d} args:\n", .{args.len});
-        for(args) |arg| {
-            std.debug.print("  {s}\n", .{arg});
-        }
+        std.process.exit(0);
     }
+
+    // now, open the file in arg[1]
+    const path = args[1];
+
+    // Attempt to open the file
+    const file = std.fs.cwd().openFile(path, .{}) catch |err| {
+        std.debug.print("Failed to open {s}: {}\n", .{path, err});
+        std.process.exit(0);
+    };
+    defer file.close(); // Don't forget to close the file when done
+
+
+
+    std.debug.print("File {s} opened successfully.\n", .{path});
 
 
     // const arg_it = std.os.args();
