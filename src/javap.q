@@ -35,7 +35,9 @@ read(path string) -> []byte {
 }
 
 showUsage() {
+    io.writeLine("open-source Java class dissassembler (c) 2026 Andrew Binstock")
 	io.writeLine("Usage: javap [options] filename")
+	io.writeLine("       output is written to the console")
 }
 
 analyze(bytes []byte) {
