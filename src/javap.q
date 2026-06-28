@@ -7,19 +7,36 @@ import io
 const { logging = true }
 
 main() {
+	classfile := ""
 	args := cli.args()
 
-	if args.len == 0 {
-		showUsage()
-		return
+	switch {
+		args.len == 0 {
+			showUsage()
+			return
+		}
+		args.len == 1 {
+			classfile = args[0]
+		}
+		args.len > 1 {
+			classfile = parseArgs(args)
+			if classfile == "" {
+				showUsage()
+				return
+			}
+		}
 	}
 
 //	loop i := 0..args.len {
 //		read(args[i])
 //	}
 
-	classBytes := read(args[0])
+	classBytes := read(classfile)
 	analyze(classBytes)
+}
+
+parseArgs(_ []string) -> string {
+	return ""
 }
 
 read(path string) -> []byte {
