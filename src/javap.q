@@ -92,6 +92,9 @@ analyze(bytes []byte) {
 			io.writeLine(versionName)
 		}
 	}
+	cpCount := getu16(bytes[8], bytes[9])
+	io.write(cpCount) 
+	io.writeLine(" entries in the constant pool (CP)")
 }
 
 getu16(msb byte, lsb byte) -> int {
